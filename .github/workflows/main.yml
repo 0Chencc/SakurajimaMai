@@ -1,0 +1,47 @@
+name: SakurajimaMai
+
+on:
+    push:
+        branches:
+          - main
+    workflow_dispatch:
+    schedule:
+        - cron: '0 0/4 * * *'
+    repository_dispatch:
+        types: joy
+
+jobs:
+    run:
+        runs-on: self-hosted
+        strategy:
+            matrix:
+                python-version: [3.9]
+        steps:
+            - name: Checkout
+              run: |
+                export selfhosted_home=~
+                if [ ! -d "$selfhosted_home/SakurajimaMai" ]; then
+                  git clone https://github.com/0Chencc/SakurajimaMai ~/SakurajimaMai
+                fi
+            - uses: actions/checkout@v2
+#            - name: Set up Python ${{ matrix.python-version }}
+#              uses: actions/setup-python@v2
+#              with:
+#                python-version: ${{ matrix.python-version }}
+            - name: Install dependencies
+              run: |
+                  python3.9 -m pip install --upgrade pip
+                  if [ -f requirements.txt ]; then python3.9 -m pip install -r requirements.txt ; fi
+            - name: 'SakurajimaMai'
+              run: |
+                  python3.9 ./src/main.py
+              env:
+                  BREAKFAST: ${{ secrets.BREAKFAST }}
+                  LUNCH: ${{ secrets.LUNCH }}
+                  DINNER: ${{ secrets.DINNER }}
+                  WB_UIDS: ${{ secrets.WB_UIDS }}
+                  BUPIDS: ${{ secrets.BUPIDS }}
+                  BAIDS: ${{ secrets.BAIDS }}
+                  AUPIDS: ${{ secrets.AUPIDS }}
+                  SECRET: ${{ secrets.SECRET }}
+                  WEBHOOK: ${{ secrets.WEBHOOK }}
