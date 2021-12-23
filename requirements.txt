@@ -8,7 +8,7 @@ fake-useragent==0.1.11
 feedparser==6.0.8
 idna==3.2
 importlib-metadata==4.8.1
-lxml==4.6.3
+lxml==4.6.5
 parse==1.19.0
 pyee==8.2.2
 pyppeteer==0.2.6
