@@ -1,7 +1,9 @@
-import time
+import datetime
+import pytz
 import send
+import time
 from config import breakfast, lunch, dinner
-
+shanghai = pytz.timezone('Asia/Shanghai')
 meals = {
     'breakfast': breakfast,
     'lunch': lunch,
@@ -28,10 +30,11 @@ def remind_start():
         print('三餐都没有设定时间，提醒吃饭退出')
         return
     while True:
-        hour = time.localtime().tm_hour
-        minute = time.localtime().tm_min
+        now = datetime.datetime.now().astimezone(shanghai)
+        hour = now.hour
+        minute = now.minute
         for key, value in meals.items():
             if value is not None and value != '':
-                if value.tm_hour == hour and value.tm_min == minute:
+                if value.hour == hour and value.minute == minute:
                     meal_remind(key)
         time.sleep(60)
