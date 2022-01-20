@@ -41,6 +41,9 @@ python3.9安装之后需要执行以下命令
 
 ```sh
 python3.9 -m pip install --upgrade setuptools
+```
+
+```sh
 #可选如果遇到distutils报错，请执行：
 sudo apt-get install python3.9-distutils
 ```
