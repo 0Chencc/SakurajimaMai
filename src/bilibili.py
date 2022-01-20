@@ -1,8 +1,8 @@
 import requests
 import send
-from config import bUPIds, bAIds
+from config import bUPIds, bAIds,shanghai
 import time
-
+import datetime
 api = {
     'userinfo': 'http://api.bilibili.com/x/space/acc/info',
     'videos_info': 'https://api.bilibili.com/x/space/arc/search',

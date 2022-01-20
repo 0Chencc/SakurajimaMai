@@ -1,5 +1,7 @@
 import os
 from datetime import *
+import pytz
+shanghai = pytz.timezone('Asia/Shanghai')
 SECRET = os.getenv('SECRET')
 WEBHOOK = os.getenv('WEBHOOK')
 

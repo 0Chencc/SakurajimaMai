@@ -1,13 +1,12 @@
-import json
 import sys
-
+from config import shanghai
 import feedparser
 import pytz
 import time
 import datetime
 from dateutil import parser
 import send
-shanghai = pytz.timezone('Asia/Shanghai')
+
 start_time = datetime.datetime.now().astimezone(shanghai)
 
 
