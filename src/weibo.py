@@ -65,6 +65,3 @@ def start_monitor():
             except:
                 continue
         time.sleep(5)
-
-
-start_monitor()
