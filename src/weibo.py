@@ -1,15 +1,15 @@
 import requests
 import send
 import time
-from config import WB_UIDS
+from config import WB_UIDS,shanghai
+import datetime
+from dateutil import parser
 api = {
     'userinfo': 'https://m.weibo.cn/api/container/getIndex',
 }
-starttime = time.localtime()
+start_time = datetime.datetime.now().astimezone(shanghai)
 weiboIds = []
 #由于github是utc，所以需要适配时区需要减去8小时
-timezone = 3600*8
-# timezone = 0
 
 
 def weibo_monitor(uid):
@@ -27,14 +27,15 @@ def weibo_monitor(uid):
     for i in weiboinfo['data']['cards']:
         if i['card_type'] == 9:
             if (i['mblog']['id'] in weiboIds) is False:
-                createtime = time.strptime(i['mblog']['created_at'], '%a %b %d %X %z %Y')
-                if is_new_weibo(createtime):
+                # createtime = time.strptime(i['mblog']['created_at'], '%a %b %d %X %z %Y')
+                create_time = parser.parse(i['mblog']['created_at'])
+                if is_new_weibo(create_time):
                     title = f'<{username}>发布了一条微博'
-                    createtime = time.strftime("%Y-%m-%d %X", createtime)
+                    create_time = create_time.__format__("%Y-%m-%d %X")
                     text = i['mblog']['text']
                     msg = f"**{title}**\n" \
                           f"\n" \
-                          f"> 于{createtime}\n" \
+                          f"> 于{create_time}\n" \
                           f"\n" \
                           f"{text}\n"
                     if 'pics' in i['mblog']:
@@ -47,7 +48,7 @@ def weibo_monitor(uid):
 
 
 def is_new_weibo(ctime):
-    if time.mktime(ctime)-timezone>time.mktime(starttime):
+    if ctime>start_time:
         return True
     else:
         return False
@@ -64,3 +65,6 @@ def start_monitor():
             except:
                 continue
         time.sleep(5)
+
+
+start_monitor()

@@ -10,7 +10,6 @@ import send
 start_time = datetime.datetime.now().astimezone(shanghai)
 
 
-
 def is_new(date):
     a = parser.parse(date).astimezone(shanghai)
     if a.date() > start_time.date():
@@ -46,6 +45,3 @@ def monitor_start():
         for i in rss_list:
             monitor(i)
         time.sleep(60*30)
-
-
-monitor_start()
