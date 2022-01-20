@@ -1,4 +1,5 @@
 import json
+import sys
 
 import feedparser
 import pytz
@@ -8,7 +9,7 @@ from dateutil import parser
 import send
 shanghai = pytz.timezone('Asia/Shanghai')
 start_time = datetime.datetime.now().astimezone(shanghai)
-rss_resource = open('../rss.txt', 'r')
+
 
 
 def is_new(date):
@@ -31,9 +32,15 @@ def monitor(url):
 
 
 def monitor_start():
+    try:
+        rss_resource = open('rss.txt', 'r')
+    except:
+        print("没有rss.txt文件，rss订阅已退出")
+        return
     rss_list = rss_resource.readlines()
     print(rss_list)
     if rss_list is None or len(rss_list) == 0:
+        print("没有订阅的rss链接，rss订阅已退出")
         return
     while True:
         for i in rss_list:
