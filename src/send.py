@@ -5,7 +5,7 @@ import json
 import requests
 
 
-def sendmsg(title,msg):
+def sendmsg(title, msg):
     headers = {
         'Content-Type': 'application/json',
     }
@@ -32,4 +32,4 @@ def sendmsg(title,msg):
     if response.json()['errcode'] == 0:
         print('已完成钉钉消息推送')
     else:
-        print('发送失败：错误代码'+response.json()['errcode']+'错误信息：'+response.json()['msg'])
+        print(f"发送失败：错误代码{response.json()['errcode']}错误信息：{response.json()['errmsg']}")

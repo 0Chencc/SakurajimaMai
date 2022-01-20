@@ -22,14 +22,15 @@
 
 5.acfun(A站)UP主更新推送
 
-6.待续（如果有需要的功能可以提issue）
+6.rss订阅，fork本项目，将自己需要订阅的rss修改到rss.txt文件即可
 
 ## Todo List
 
-- [ ] 增加rss订阅功能（目前卡在不同网站有不同时间戳需要转化到统一格式的问题）
+- [x] 增加rss订阅功能（目前卡在不同网站有不同时间戳需要转化到统一格式的问题）
 - [ ] 增加腾讯视频/爱奇艺视频追剧功能
 
 ## 如何配置(Setting)
+### 服务器配置
 
 fork本项目到自己的仓库，然后Settings-Actions-Runners-New self-hosted-runner，通过github官方给的教程来设置自己的私有云。
 
@@ -48,30 +49,44 @@ python3.9 -m pip install --upgrade setuptools
 sudo apt-get install python3.9-distutils
 ```
 
-以下所有变量需要在Setting->Secret中配置
+### Secrets配置
 
 **必要变量**：钉钉机器人(DingRobot)的WEBHOOK，SECRET（密钥）-> [如何配置](#配置钉钉机器人)
 
-吃饭则是一日三餐的时间，我早餐(**BREAKFAST**)不吃，午餐(**LUNCH**)，晚餐(**DINNER**)吃，比方说我午餐是11点吃，那么就需要设置**LUNCH=1100**，晚餐是17点30吃，则是**DINNER=1730**
+订阅参数都需要在Setting->Secret中配置
 
-微博则是**WB_UIDS**，需要用逗号作为分隔，例如->**WB_UIDS=2099708877,5524254784**
+![Secrets](img/Secrets.png)
 
-同理b站UP则是**BUPIDS**，例如->**BUPIDS=5970160,98573631**
+<details>
+<summary><b>🍗三餐提醒</b></summary>
+  <br>三餐提醒，我早餐(<B>BREAKFAST</B>)不吃，午餐(<B>LUNCH</B>)，晚餐(<B>DINNER</B>)吃，比方说我午餐是11点吃，那么就需要设置<B>÷LUNCH=1100</B>，晚餐是17点30吃，则是<B>DINNER=1730</B></br>
+</details>
 
-番剧则是**BAIDS**，如下图中，ss之后的那串数字，例如->**BAIDS=36170**
+<details>
+<summary><b>📰微博更新推送</b></summary>
+  <br>微博则是<B>WB_UIDS</B>，需要用逗号作为分隔，例如->WB_UIDS=2099708877,5524254784</br>
+  <img src=img/weibo.png>
+</details>
 
-以上都是用户id，微博就是该用户主页之后的那串数字，b站up主则是up主个人空间网址的那串数字，a站up主同理，也是主页之后的那串数字
+<details>
+<summary><b>📺B站up主更新推送以及番剧更新推送</b></summary>
+  <br>同理b站UP则是<B>BUPIDS</B>，例如->BUPIDS=5970160,98573631</br>
+<img src=img/bilibili_up.png>
+ <br>番剧则是<B>BAIDS</B>，如下图中，ss之后的那串数字，例如->BAIDS=36170</br>
+<img src=img/bilibili_anime.png>
+</details>
 
-![微博](img/weibo.png)
+<details>
+<summary><b>📺A站（AcFun）UP主更新推送</b></summary>
+<img src=img/acfun_up.png>
+</details>
 
-![b站](img/bilibili_up.png)
-
-![](img/bilibili_anime.png)
-
-![](img/acfun_up.png)
-
-
-
+<details>
+<summary><b>📰Rss订阅</b></summary>
+<br>考虑到rss的订阅并非过于隐私，而且rss订阅的站点越多越能获取到更多知识。</br>
+<br>出于这两点考虑我决定将rss订阅改成通过根目录的rss.txt文件来获取rss订阅链接。</br>
+<br>其他用户也可以通过fork来获取其他优秀的朋友经常关注哪些前沿的网站。</br>
+</details>
 ## 配置钉钉机器人
 
 需要注册一个钉钉账号，同时建立一个群聊（电脑端可以创建只有自己的群聊）
