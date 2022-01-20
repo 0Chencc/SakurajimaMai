@@ -33,7 +33,8 @@ def monitor(url):
 
 def monitor_start():
     try:
-        rss_resource = open('rss.txt', 'r')
+        rss_path = f'{sys.path[0]}/rss.txt'
+        rss_resource = open(rss_path, 'r')
     except:
         print("没有rss.txt文件，rss订阅已退出")
         return
