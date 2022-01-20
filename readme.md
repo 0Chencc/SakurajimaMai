@@ -24,6 +24,11 @@
 
 6.待续（如果有需要的功能可以提issue）
 
+## Todo List
+
+- [ ] 增加rss订阅功能（目前卡在不同网站有不同时间戳需要转化到统一格式的问题）
+- [ ] 增加腾讯视频/爱奇艺视频追剧功能
+
 ## 如何配置(Setting)
 
 fork本项目到自己的仓库，然后Settings-Actions-Runners-New self-hosted-runner，通过github官方给的教程来设置自己的私有云。
@@ -32,10 +37,12 @@ fork本项目到自己的仓库，然后Settings-Actions-Runners-New self-hosted
 
 提前预装好Pyhton3.9即可（必要python3，其他版本可以自行修改./github/workflows/main.yml文件中所有python3.9字符，没测试过在低版本运行有无报错）
 
-如果遇到安装依赖的报错，请升级setuptools
+python3.9安装之后需要执行以下命令
 
 ```sh
 python3.9 -m pip install --upgrade setuptools
+#可选如果遇到distutils报错，请执行：
+sudo apt-get install python3.9-distutils
 ```
 
 以下所有变量需要在Setting->Secret中配置
