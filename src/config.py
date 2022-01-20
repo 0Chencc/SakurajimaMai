@@ -1,6 +1,6 @@
 import os
-import time
-
+from datetime import *
+from dateutil.tz import *
 SECRET = os.getenv('SECRET')
 WEBHOOK = os.getenv('WEBHOOK')
 
@@ -13,17 +13,20 @@ aAIds = os.getenv('AUPIDS').split(',')if os.getenv('AUPIDS') is not None else ''
 breakfast = os.getenv('BREAKFAST')
 if breakfast is not None and breakfast != '':
     breakfast = (
-        time.strptime(breakfast, '%H') if len(breakfast) == 2 else time.strptime(
+        datetime.strptime(breakfast, '%H') if len(breakfast) == 2 else datetime.strptime(
             breakfast, '%H%M'))
+    breakfast.astimezone(tz.gettz('Asia/Shanghai'))
 
 lunch = os.getenv('LUNCH')
 if lunch is not None and lunch != '':
     lunch = (
-        time.strptime(lunch, '%H') if len(lunch) == 2 else time.strptime(
+        datetime.strptime(lunch, '%H') if len(lunch) == 2 else datetime.strptime(
             lunch, '%H%M'))
+    lunch.astimezone(tz.gettz('Asia/Shanghai'))
 
 dinner = os.getenv('DINNER')
 if dinner is not None and dinner != '':
     dinner = (
-        time.strptime(dinner, '%H') if len(dinner) == 2 else time.strptime(
+        datetime.strptime(dinner, '%H') if len(dinner) == 2 else datetime.strptime(
             dinner, '%H%M'))
+    dinner.astimezone(tz.gettz('Asia/Shanghai'))
