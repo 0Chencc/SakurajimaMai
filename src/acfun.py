@@ -1,11 +1,13 @@
+import datetime
+
 import requests
 import requests_html
 import random
 import time
 import send
-from config import aAIds
+from config import aAIds, shanghai
 
-starttime = time.gmtime()
+start_time = datetime.datetime.now().astimezone(shanghai)
 
 api = {
     'user_info': 'https://www.acfun.cn/u/',
@@ -38,9 +40,9 @@ def acfun_up_monitor(uid):
     r = session.get(url=user_info, headers=headers, cookies=cookies).html
     play = r.xpath("//div[@id='ac-space-video-list']/a/@href")
     for i in range(len(play)):
-        pushtime = r.xpath(f"//div[@id='ac-space-video-list']/a[@href='{play[i]}']/figure/figcaption/p/text()")[2]
+        push_time = r.xpath(f"//div[@id='ac-space-video-list']/a[@href='{play[i]}']/figure/figcaption/p/text()")[2]
         url = r.xpath("//div[@id='ac-space-video-list']/a/@href")[i]
-        if is_new_video(pushtime) and (url in up_video_list) is False:
+        if is_new_video(push_time) and (url in up_video_list) is False:
             name = r.xpath("//div[@class='top']/span[@class='name']/@data-username")[0]
             pic = r.xpath(
                 f"//div[@id='ac-space-video-list']/a[@href='{play[i]}']/figure/img/@src")[0]
@@ -50,7 +52,7 @@ def acfun_up_monitor(uid):
                 'url': f"https://www.acfun.cn{url}",
                 'title': title,
                 'name': name,
-                'pushtime': pushtime,
+                'pushtime': push_time,
                 'pic': pic
             }
             up_ding_talk(video_info)
@@ -59,9 +61,9 @@ def acfun_up_monitor(uid):
             break
 
 
-def is_new_video(pushtime):
-    pushtime = time.strptime(pushtime, "%Y/%m/%d")
-    if pushtime > starttime:
+def is_new_video(push_time):
+    push_time = datetime.datetime.strptime(push_time, "%Y/%m/%d")
+    if push_time.date() >= start_time.date():
         return True
     else:
         return False
