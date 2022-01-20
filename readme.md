@@ -86,6 +86,7 @@ sudo apt-get install python3.9-distutils
 <br>考虑到rss的订阅并非过于隐私，而且rss订阅的站点越多越能获取到更多知识。</br>
 <br>出于这两点考虑我决定将rss订阅改成通过根目录的rss.txt文件来获取rss订阅链接。</br>
 <br>其他用户也可以通过fork来获取其他优秀的朋友经常关注哪些前沿的网站。</br>
+<img src=img/rss.png>
 </details>
 ## 配置钉钉机器人
 
