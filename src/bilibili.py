@@ -26,7 +26,7 @@ def bilibili_monitor(upid):
         bv = i['bvid']
         # 获取到的是时间戳，之前有bug
         upload_time = i['created']
-        if upload_time >= start_time and bv not in  up_video_list:
+        if upload_time >= start_time and bv not in up_video_list:
             ding_talk(i, upid)
             up_video_list.append(bv)
         else:
@@ -42,7 +42,7 @@ def anime_monitor(apid):
     eps.reverse()
     for i in eps:
         pub_time = i['pub_time']
-        if pub_time >= start_time and (apid in anime_list) is False:
+        if pub_time >= start_time and apid not in anime_list:
             print((i in anime_list) is False)
             anime_ding_talk(i, apid)
             anime_list.append(apid)
