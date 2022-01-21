@@ -51,6 +51,3 @@ def monitor_start():
         for i in rss_list:
             monitor(i)
         time.sleep(60*30)
-
-
-print(datetime.datetime.now().timetuple())

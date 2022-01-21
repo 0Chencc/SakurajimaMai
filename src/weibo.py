@@ -9,7 +9,6 @@ api = {
 }
 start_time = datetime.datetime.now().astimezone(shanghai)
 weiboIds = []
-#由于github是utc，所以需要适配时区需要减去8小时
 
 
 def weibo_monitor(uid):
