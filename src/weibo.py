@@ -48,7 +48,7 @@ def weibo_monitor(uid):
 
 
 def is_new_weibo(ctime):
-    if ctime>start_time:
+    if ctime > start_time:
         return True
     else:
         return False

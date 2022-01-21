@@ -1,23 +1,24 @@
 import sys
-from config import shanghai
 import feedparser
 import time
 import datetime
 from dateutil import parser
 import send
 
-start_time = datetime.datetime.now().astimezone(shanghai)
+start_time = time.mktime(datetime.datetime.now().timetuple())
 new_post_list = []
 
 
 def is_new(date):
-    a = parser.parse(date).astimezone(shanghai)
-    if a.date() > start_time.date():
-        return True
-    elif a.date() == start_time.date():
-        return a.hour >= start_time.hour and a.minute >= start_time.minute
-    else:
-        return False
+    # 通过datetime.timetuple()转化为元组，再使用time.mktime转成时间戳来进行判断。
+    push_time = time.mktime(parser.parse(date).timetuple())
+    return push_time >= start_time
+    # if a.date() > start_time.date():
+    #     return True
+    # elif a.date() == start_time.date():
+    #     return a.hour >= start_time.hour and a.minute >= start_time.minute
+    # else:
+    #     return False
 
 
 def monitor(url):
