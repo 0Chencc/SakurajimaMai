@@ -1,6 +1,6 @@
 import requests
 import send
-from config import bUPIds, bAIds
+from config import bUPIds, bAIds, shanghai
 import time
 import datetime
 from dateutil import parser
@@ -10,7 +10,7 @@ api = {
     'video_play': 'https://www.bilibili.com/video/',
     'anime_info': 'https://api.bilibili.com/pgc/view/web/season',
 }
-start_time = time.mktime(datetime.datetime.now().timetuple())
+start_time = datetime.datetime.now().astimezone(shanghai)
 
 up_video_list = []
 anime_list = []
@@ -24,7 +24,7 @@ def bilibili_monitor(upid):
     videos = response.json()['data']['list']['vlist']
     for i in videos:
         bv = i['bvid']
-        upload_time = time.mktime(parser.parse(i['created']).timetuple())
+        upload_time = parser.parse(i['created'])
         if upload_time >= start_time and (bv in up_video_list) is False:
             ding_talk(i, upid)
             up_video_list.append(bv)
@@ -40,7 +40,7 @@ def anime_monitor(apid):
     eps = response.json()['result']['episodes']
     eps.reverse()
     for i in eps:
-        pub_time = time.mktime(parser.parse(i['pub_time']).timetuple())
+        pub_time = parser.parse(i['pub_time'])
         if pub_time >= start_time and (apid in anime_list) is False:
             print((i in anime_list) is False)
             anime_ding_talk(i, apid)

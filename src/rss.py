@@ -4,15 +4,19 @@ import time
 import datetime
 from dateutil import parser
 import send
+from config import shanghai
 
-start_time = time.mktime(datetime.datetime.now().timetuple())
+start_time = datetime.datetime.now().astimezone(shanghai)
 new_post_list = []
 
 
 def is_new(date):
     # 通过datetime.timetuple()转化为元组，再使用time.mktime转成时间戳来进行判断。
-    push_time = time.mktime(parser.parse(date).timetuple())
-    return push_time >= start_time
+    # push_time = time.mktime(parser.parse(date).timetuple())
+    # return push_time >= start_time
+    # 通过datetime直接判断
+    return parser.parse(date) >= start_time
+    # a = parser.parse(date)
     # if a.date() > start_time.date():
     #     return True
     # elif a.date() == start_time.date():
@@ -47,3 +51,6 @@ def monitor_start():
         for i in rss_list:
             monitor(i)
         time.sleep(60*30)
+
+
+print(datetime.datetime.now().timetuple())
