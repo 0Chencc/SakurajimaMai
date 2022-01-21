@@ -10,7 +10,7 @@ api = {
     'video_play': 'https://www.bilibili.com/video/',
     'anime_info': 'https://api.bilibili.com/pgc/view/web/season',
 }
-start_time = datetime.datetime.now().astimezone(shanghai)
+start_time = time.mktime(datetime.datetime.now().astimezone(shanghai).timetuple())
 
 up_video_list = []
 anime_list = []
@@ -24,8 +24,9 @@ def bilibili_monitor(upid):
     videos = response.json()['data']['list']['vlist']
     for i in videos:
         bv = i['bvid']
-        upload_time = parser.parse(i['created'])
-        if upload_time >= start_time and (bv in up_video_list) is False:
+        # 获取到的是时间戳，之前有bug
+        upload_time = i['created']
+        if upload_time >= start_time and bv not in  up_video_list:
             ding_talk(i, upid)
             up_video_list.append(bv)
         else:
@@ -40,7 +41,7 @@ def anime_monitor(apid):
     eps = response.json()['result']['episodes']
     eps.reverse()
     for i in eps:
-        pub_time = parser.parse(i['pub_time'])
+        pub_time = i['pub_time']
         if pub_time >= start_time and (apid in anime_list) is False:
             print((i in anime_list) is False)
             anime_ding_talk(i, apid)
