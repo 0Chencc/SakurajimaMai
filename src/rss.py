@@ -1,13 +1,13 @@
 import sys
 from config import shanghai
 import feedparser
-import pytz
 import time
 import datetime
 from dateutil import parser
 import send
 
 start_time = datetime.datetime.now().astimezone(shanghai)
+new_post_list = []
 
 
 def is_new(date):
@@ -25,8 +25,9 @@ def monitor(url):
     for i in rss['entries']:
         text = f"{i['title']} {i['link']}"
         date = f"{i['published']}"
-        if is_new(date):
+        if is_new(date) and text not in new_post_list:
             send.sendmsg('订阅的rss更新了', text)
+            new_post_list.append(text)
 
 
 def monitor_start():
