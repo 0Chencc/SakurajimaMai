@@ -10,7 +10,7 @@ api = {
     'video_play': 'https://www.bilibili.com/video/',
     'anime_info': 'https://api.bilibili.com/pgc/view/web/season',
 }
-start_time = time.mktime(datetime.datetime.now().astimezone(shanghai).timetuple())
+start_time = time.mktime(datetime.datetime.now().timetuple())
 
 up_video_list = []
 anime_list = []
