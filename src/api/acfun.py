@@ -5,7 +5,7 @@ import requests_html
 import random
 import time
 import send
-from src.config import aAIds, shanghai
+from config import aAIds, shanghai
 
 start_time = datetime.datetime.now().astimezone(shanghai)
 

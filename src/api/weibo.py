@@ -1,7 +1,7 @@
 import requests
 import send
 import time
-from src.config import WB_UIDS,shanghai
+from config import WB_UIDS,shanghai
 import datetime
 from dateutil import parser
 api = {

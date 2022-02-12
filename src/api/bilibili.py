@@ -1,6 +1,6 @@
 import requests
 import send
-from src.config import bUPIds, bAIds
+from config import bUPIds, bAIds
 import time
 import datetime
 
