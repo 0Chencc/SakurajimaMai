@@ -3,7 +3,7 @@ import feedparser
 import time
 import datetime
 from dateutil import parser
-import send
+from api import send
 from config import shanghai
 
 start_time = datetime.datetime.now().astimezone(shanghai)

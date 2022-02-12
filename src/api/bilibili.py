@@ -1,5 +1,5 @@
 import requests
-import send
+from api import send
 from config import bUPIds, bAIds
 import time
 import datetime

@@ -1,5 +1,5 @@
 import requests
-import send
+from api import send
 import time
 from config import WB_UIDS,shanghai
 import datetime

@@ -1,6 +1,6 @@
 import datetime
 import pytz
-import send
+from api import send
 import time
 from src.config import breakfast, lunch, dinner
 shanghai = pytz.timezone('Asia/Shanghai')
