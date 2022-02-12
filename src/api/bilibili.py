@@ -1,9 +1,9 @@
 import requests
 import send
-from config import bUPIds, bAIds, shanghai
+from src.config import bUPIds, bAIds
 import time
 import datetime
-from dateutil import parser
+
 api = {
     'userinfo': 'http://api.bilibili.com/x/space/acc/info',
     'videos_info': 'https://api.bilibili.com/x/space/arc/search',
@@ -43,7 +43,6 @@ def anime_monitor(apid):
     for i in eps:
         pub_time = i['pub_time']
         if pub_time >= start_time and apid not in anime_list:
-            print((i in anime_list) is False)
             anime_ding_talk(i, apid)
             anime_list.append(apid)
         else:
@@ -109,3 +108,6 @@ def start_monitor():
             except:
                 continue
         time.sleep(10*60)
+
+
+start_monitor()

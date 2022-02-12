@@ -1,4 +1,4 @@
-from config import WEBHOOK
+from src.config import WEBHOOK
 from sign import getDingSign
 import urllib3
 import json

@@ -4,7 +4,7 @@ import time
 import datetime
 from dateutil import parser
 import send
-from config import shanghai
+from src.config import shanghai
 
 start_time = datetime.datetime.now().astimezone(shanghai)
 new_post_list = []
