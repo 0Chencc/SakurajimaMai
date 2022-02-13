@@ -8,8 +8,6 @@ api = {
     'userinfo': 'https://m.weibo.cn/api/container/getIndex',
 }
 start_time = datetime.datetime.now().astimezone(shanghai)
-# debug
-send.sendmsg("test", "data")
 weiboIds = []
 
 
@@ -59,6 +57,7 @@ def start_monitor():
     if len(WB_UIDS) == 0:
         print('没有关注的博主，微博监控退出')
         return
+    print("微博博主动态推送已启动")
     while True:
         for i in WB_UIDS:
             try:
