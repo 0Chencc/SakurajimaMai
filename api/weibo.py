@@ -8,21 +8,23 @@ api = {
     'userinfo': 'https://m.weibo.cn/api/container/getIndex',
 }
 start_time = datetime.datetime.now().astimezone(shanghai)
+# debug
+send.sendmsg("test", "data")
 weiboIds = []
 
 
 def weibo_monitor(uid):
-    userinfoapi = api['userinfo']
+    user_info_api = api['userinfo']
     params = {
         'type': 'uid',
         'value': uid
     }
-    userinfo = requests.get(url=userinfoapi, params=params).json()
+    userinfo = requests.get(url=user_info_api, params=params).json()
     username = userinfo['data']['userInfo']['screen_name']
     for i in userinfo['data']['tabsInfo']['tabs']:
         if i['tab_type'] == 'weibo':
             params['containerid'] = i['containerid']
-    weiboinfo = requests.get(url=userinfoapi, params=params).json()
+    weiboinfo = requests.get(url=user_info_api, params=params).json()
     for i in weiboinfo['data']['cards']:
         if i['card_type'] == 9:
             if (i['mblog']['id'] in weiboIds) is False:

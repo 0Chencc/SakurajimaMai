@@ -21,7 +21,7 @@ jobs:
               run: |
                 export selfhosted_home=~
                 if [ ! -d "$selfhosted_home/SakurajimaMai" ]; then
-                  git clone https://github.com/0Chencc/SakurajimaMai ~/SakurajimaMai
+                  git clone https://github.com/0Chencc/SakurajimaMai $selfhosted_home/SakurajimaMai
                 fi
             - uses: actions/checkout@v2
 #            - name: Set up Python ${{ matrix.python-version }}
