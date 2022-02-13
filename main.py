@@ -27,5 +27,6 @@ def cycle():
 threads.append(threading.Thread(target=cycle))
 
 if __name__ == '__main__':
+    print("start")
     for i in threads:
         i.start()
