@@ -2,7 +2,6 @@ import time
 import threading
 import os
 from api import acfun, bilibili, rss, weibo, mealtime,send
-send.sendmsg("1111", "2222")
 threads = [threading.Thread(target=weibo.start_monitor), threading.Thread(target=bilibili.start_monitor),
            threading.Thread(target=mealtime.remind_start), threading.Thread(target=acfun.start_monitor),
            threading.Thread(target=rss.monitor_start)]
@@ -27,6 +26,5 @@ def cycle():
 threads.append(threading.Thread(target=cycle))
 
 if __name__ == '__main__':
-    send.sendmsg("start", "start")
     for i in threads:
         i.start()

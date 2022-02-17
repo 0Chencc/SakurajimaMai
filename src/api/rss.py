@@ -3,8 +3,8 @@ import feedparser
 import time
 import datetime
 from dateutil import parser
-from api import send
-from config import shanghai
+from src.api import send
+from src.config import shanghai
 
 start_time = datetime.datetime.now().astimezone(shanghai)
 new_post_list = []

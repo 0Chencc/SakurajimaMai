@@ -3,8 +3,8 @@ import requests
 import requests_html
 import random
 import time
-from api import send
-from config import aAIds, shanghai
+from src.api import send
+from src.config import aAIds, shanghai
 
 start_time = datetime.datetime.now().astimezone(shanghai)
 

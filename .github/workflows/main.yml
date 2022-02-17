@@ -34,7 +34,7 @@ jobs:
                   if [ -f requirements.txt ]; then python3.9 -m pip install -r requirements.txt ; fi
             - name: 'SakurajimaMai'
               run: |
-                  python3.9 main.py
+                  python3.9 ./src/main.py
               env:
                   BREAKFAST: ${{ secrets.BREAKFAST }}
                   LUNCH: ${{ secrets.LUNCH }}
