@@ -108,6 +108,3 @@ def start_monitor():
             except:
                 continue
         time.sleep(10*60)
-
-
-start_monitor()

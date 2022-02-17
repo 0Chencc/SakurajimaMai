@@ -1,7 +1,8 @@
 import time
 import threading
 import os
-from api import acfun, bilibili, rss, weibo, mealtime,send
+from api import acfun, bilibili, rss, weibo, mealtime, send
+
 threads = [threading.Thread(target=weibo.start_monitor), threading.Thread(target=bilibili.start_monitor),
            threading.Thread(target=mealtime.remind_start), threading.Thread(target=acfun.start_monitor),
            threading.Thread(target=rss.monitor_start)]
