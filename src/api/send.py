@@ -1,5 +1,5 @@
-from config import WEBHOOK
-from api.sign import getDingSign
+from src.config import WEBHOOK
+from src.api.sign import getDingSign
 import urllib3
 import json
 import requests

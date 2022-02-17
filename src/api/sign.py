@@ -3,7 +3,7 @@ import time
 import hmac
 import base64
 import urllib.parse
-from config import SECRET
+from src.config import SECRET
 
 
 def getDingSign():
