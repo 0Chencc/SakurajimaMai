@@ -84,6 +84,3 @@ def monitor_start():
     while True:
         e_sport_info_monitor()
         time.sleep(30*60)
-
-
-monitor_start()
