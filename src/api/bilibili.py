@@ -77,7 +77,7 @@ def ding_talk(video, upid):
     name = requests.get(api['userinfo'], params=params).json()['data']['name']
     play = api['video_play'] + bv
     title = f"{name} 发布了新的视频"
-    msg = f"**<{name}> 发布了新的视频**\n" \
+    msg = f" **{name}** 发布了新的视频\n" \
           f"\n" \
           f"**《{video_title}》**\n" \
           f"\n" \

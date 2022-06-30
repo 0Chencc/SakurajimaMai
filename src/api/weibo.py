@@ -4,6 +4,7 @@ import time
 from config import WB_UIDS, shanghai
 import datetime
 from dateutil import parser
+
 api = {
     'userinfo': 'https://m.weibo.cn/api/container/getIndex',
 }
@@ -29,7 +30,7 @@ def weibo_monitor(uid):
                 # createtime = time.strptime(i['mblog']['created_at'], '%a %b %d %X %z %Y')
                 create_time = parser.parse(i['mblog']['created_at'])
                 if is_new_weibo(create_time):
-                    title = f'<{username}>发布了一条微博'
+                    title = f'{username}发布了一条微博'
                     create_time = create_time.__format__("%Y-%m-%d %X")
                     text = i['mblog']['text']
                     msg = f"**{title}**\n" \
