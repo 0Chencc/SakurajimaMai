@@ -27,7 +27,7 @@ def bilibili_monitor(upid):
         # 获取到的是时间戳，之前有bug
         upload_time = i['created']
         if upload_time >= start_time and bv not in up_video_list:
-            ding_talk(i, upid)
+            ding_talk(i)
             up_video_list.append(bv)
         else:
             break
@@ -67,17 +67,19 @@ def anime_ding_talk(ep, apid):
     send.sendmsg(title=f'{name}更新啦', msg=msg)
 
 
-def ding_talk(video, upid):
-    params = {
-        'mid': upid
-    }
+def ding_talk(video):
+    # b站旧api
+    # params = {
+    #     'mid': upid
+    # }
+    # author = requests.get(api['userinfo'], params=params).json()['data']['name']
     bv = video['bvid']
     video_title = video['title']
     pic = f"![pic]({video['pic']})"
-    name = requests.get(api['userinfo'], params=params).json()['data']['name']
+    author = video['author']
     play = api['video_play'] + bv
-    title = f"{name} 发布了新的视频"
-    msg = f" **{name}** 发布了新的视频\n" \
+    title = f"{author} 发布了新的视频"
+    msg = f" **{author}** 发布了新的视频\n" \
           f"\n" \
           f"**《{video_title}》**\n" \
           f"\n" \
